@@ -10,7 +10,7 @@ app.use(function (req, res, next) {
   next();
 });
 app.use(bodyParser.json());
-app.use('/api', api);
+app.use('/react-2021-10-08/api', api);
 
 app.listen(port, 'localhost', function (err) {
   if (err) {

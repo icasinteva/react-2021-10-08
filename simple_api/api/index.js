@@ -2,11 +2,11 @@ const router = require('express').Router();
 const { restaurants, products, reviews, users } = require('./mock');
 const { reply, getById } = require('./utils');
 
-router.get('/restaurants', (req, res, next) => {
+router.get('/react-2021-10-08/restaurants', (req, res, next) => {
   reply(res, restaurants);
 });
 
-router.get('/products', (req, res, next) => {
+router.get('/react-2021-10-08/products', (req, res, next) => {
   const { id } = req.query;
   let result = products;
   if (id) {
@@ -18,7 +18,7 @@ router.get('/products', (req, res, next) => {
   reply(res, result);
 });
 
-router.get('/reviews', (req, res, next) => {
+router.get('/react-2021-10-08/reviews', (req, res, next) => {
   const { id } = req.query;
   let result = reviews;
   if (id) {
@@ -30,7 +30,7 @@ router.get('/reviews', (req, res, next) => {
   reply(res, result);
 });
 
-router.get('/users', (req, res, next) => {
+router.get('/react-2021-10-08/users', (req, res, next) => {
   reply(res, users);
 });
 

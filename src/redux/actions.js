@@ -39,17 +39,23 @@ export const addReview = (review, restId) => ({
   generateId: ['reviewId', 'userId'],
 });
 
+const apiUrl =
+  'https://raw.githubusercontent.com/icasinteva/react-2021-10-08/refs/heads/master/src';
+
 export const loadRestaurants = () => ({
   type: LOAD_RESTAURANTS,
-  CallAPI: '/api/restaurants',
+  CallAPI: `${apiUrl}/restaurants.json`,
 });
 export const loadProducts = (restId) => ({
   type: LOAD_PRODUCTS,
-  CallAPI: `/api/products?id=${restId}`,
+  CallAPI: `${apiUrl}/products.json?id=${restId}`,
   restId,
 });
 
-const _loadUsers = () => ({ type: LOAD_USERS, CallAPI: '/api/users' });
+const _loadUsers = () => ({
+  type: LOAD_USERS,
+  CallAPI: `${apiUrl}/users.json`,
+});
 
 export const loadReviews = (restId) => async (dispatch, getState) => {
   const state = getState();
@@ -60,8 +66,8 @@ export const loadReviews = (restId) => async (dispatch, getState) => {
   dispatch({ type: LOAD_REVIEWS + REQUEST, restId });
 
   try {
-    const data = await fetch(`/api/reviews?id=${restId}`).then((res) =>
-      res.json()
+    const data = await fetch(`${apiUrl}/reviews.json?id=${restId}`).then(
+      (res) => res.json()
     );
     dispatch({ type: LOAD_REVIEWS + SUCCESS, restId, data });
   } catch (error) {
@@ -85,7 +91,11 @@ export const createOrder = () => async (dispatch, getState) => {
   const postData = orderDataSelector(state);
 
   try {
-    await dispatch({ type: CREATE_ORDER, CallAPI: '/api/order', postData });
+    await dispatch({
+      type: CREATE_ORDER,
+      CallAPI: '/api/order',
+      postData,
+    });
     dispatch(push('/order-success'));
   } catch {
     dispatch(push('/order-error'));

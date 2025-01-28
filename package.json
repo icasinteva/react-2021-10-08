@@ -22,11 +22,14 @@
     "reselect": "^4.0.0",
     "uuid": "^8.3.2"
   },
+  "homepage": "https://icasinteva.github.io/react-2021-10-08",
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"node simple_api/server.js\"",
-    "build": "react-scripts build",
+    "start": "concurrently \"react-scripts --openssl-legacy-provider start\" \"node simple_api/server.js\"",
+    "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run --openssl-legacy-provider build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -57,6 +60,7 @@
   "devDependencies": {
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "enzyme": "^3.11.0",
+    "gh-pages": "^6.3.0",
     "husky": "^7.0.2",
     "prettier": "^2.4.1",
     "pretty-quick": "^3.1.1"
